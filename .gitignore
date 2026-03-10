@@ -1,0 +1,13 @@
+# Backend
+ecommerce-backend/target/
+
+# Frontend
+ecommerce-ui/node_modules/
+ecommerce-ui/build/
+
+# OS
+.DS_Store
+
+# IDE
+.idea
+.vscode

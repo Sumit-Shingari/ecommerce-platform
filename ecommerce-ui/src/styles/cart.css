@@ -1,0 +1,37 @@
+.cart-container{
+ max-width:900px;
+ margin:auto;
+ padding:40px;
+}
+
+.cart-item{
+ display:flex;
+ gap:20px;
+ border-bottom:1px solid #eee;
+ padding:20px 0;
+}
+
+.cart-item img{
+ width:120px;
+}
+
+.cart-info{
+ flex:1;
+}
+
+.cart-qty button{
+ padding:4px 10px;
+}
+
+.cart-summary{
+ margin-top:30px;
+ text-align:right;
+}
+
+.checkout-btn{
+ background:#ff3f6c;
+ color:white;
+ border:none;
+ padding:12px 20px;
+ cursor:pointer;
+}

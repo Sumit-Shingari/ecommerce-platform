@@ -1,0 +1,44 @@
+.pdp-container{
+ display:flex;
+ gap:40px;
+ padding:40px;
+}
+
+.pdp-left img{
+ width:400px;
+ border-radius:8px;
+}
+
+.pdp-right{
+ max-width:500px;
+}
+
+.pdp-price{
+ font-size:24px;
+ font-weight:600;
+ margin:10px 0;
+}
+
+.size-options button,
+.color-options button{
+ margin:5px;
+ padding:8px 12px;
+ border:1px solid #ccc;
+ background:white;
+ cursor:pointer;
+}
+
+.size-options button.active,
+.color-options button.active{
+ border-color:#ff3f6c;
+ color:#ff3f6c;
+}
+
+.add-cart-btn{
+ margin-top:20px;
+ padding:12px 20px;
+ background:#ff3f6c;
+ color:white;
+ border:none;
+ cursor:pointer;
+}

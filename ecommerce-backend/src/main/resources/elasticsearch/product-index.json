@@ -1,0 +1,45 @@
+{
+  "settings": {
+    "analysis": {
+      "filter": {
+        "fashion_synonym_filter": {
+          "type": "synonym",
+          "synonyms": [
+            "tshirt, t-shirt, tee",
+            "hoodie, sweatshirt",
+            "jeans, denim",
+            "joggers, trackpants",
+            "sneakers, shoes"
+          ]
+        }
+      },
+      "analyzer": {
+        "fashion_analyzer": {
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "fashion_synonym_filter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "dynamic": "strict",
+    "properties": {
+      "id": { "type": "keyword" },
+      "name": { "type": "text", "analyzer": "fashion_analyzer" },
+      "thumbnailUrl": {"type": "keyword"},
+      "brand": { "type": "keyword" },
+      "category": { "type": "keyword" },
+      "suggest": {"type": "completion"},
+      "gender": { "type": "keyword" },
+      "sizes": { "type": "keyword" },
+      "colors": { "type": "keyword" },
+      "minPrice": { "type": "double" },
+      "maxPrice": { "type": "double" },
+      "imageUrl": { "type": "keyword" },
+      "attributes": { "type": "object", "dynamic": true }
+    }
+  }
+}

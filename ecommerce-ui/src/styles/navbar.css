@@ -1,0 +1,427 @@
+/* ================= HEADER CONTAINER ================= */
+.fashion-header {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+  position: sticky;     /* 🔥 makes header stick */
+  top: 0;
+  z-index: 1000;
+}
+
+/* ================= TOP ROW ================= */
+.fashion-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 50px;
+  gap: 30px;
+}
+
+/* ================= LEFT SIDE ================= */
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  flex-shrink: 0; /* prevent shrinking */
+}
+
+/* LOGO */
+.fashion-logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ff3f6c;
+  cursor: pointer;
+}
+
+/* ================= MENU ================= */
+.fashion-menu {
+  display: flex;
+  gap: 25px;
+}
+
+.menu-item {
+  position: relative;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.menu-item:hover {
+  color: #ff3f6c;
+}
+
+/* ================= MEGA MENU ================= */
+.mega-menu {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  background: #fff;
+  display: flex;
+  gap: 40px;
+  padding: 25px;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  z-index: 100;
+}
+
+.mega-menu h4 {
+  color: #ff3f6c;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.mega-menu span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mega-menu span:hover {
+  color: #ff3f6c;
+}
+
+/* ================= CENTER SEARCH ================= */
+.fashion-search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 550px;  /* 🔥 Control max size */
+  background: #f5f5f6;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.fashion-search input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding-left: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.fashion-search:focus-within {
+  border-color: #ff3f6c;
+}
+
+.search-icon {
+  color: #777;
+}
+
+/* ================= RIGHT SIDE ================= */
+.fashion-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0; /* prevents compressing search */
+}
+
+/* ================= BUTTONS ================= */
+.btn-outline {
+  border: 1px solid #ff3f6c;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 4px;
+  color: #ff3f6c !important;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: #ff3f6c;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-danger {
+  background: #222;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ================= PROFILE DROPDOWN ================= */
+
+.profile-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Trigger */
+.profile-trigger {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+/* Dropdown Container */
+.profile-dropdown {
+  position: absolute;
+  top: 100%;              /* 🔥 attach directly below trigger */
+  right: 0;
+  margin-top: 8px;        /* visual spacing WITHOUT hover gap */
+  background: #ffffff;
+  border-radius: 6px;
+  min-width: 160px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  display: none;
+  flex-direction: column;
+  padding: 8px 0;
+  z-index: 9999;
+}
+
+/* 🔥 EXTENDED HOVER AREA FIX */
+.profile-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 160px;
+  height: 12px;
+}
+
+/* SHOW DROPDOWN WHEN HOVERING ANY PART */
+.profile-wrapper:hover .profile-dropdown {
+  display: flex;
+}
+
+/* Items */
+.profile-dropdown span {
+  padding: 10px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.profile-dropdown span:hover {
+  background: #f5f5f6;
+  color: #ff3f6c;
+}
+
+/* ================= CART ================= */
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: #ff3f6c;
+  color: white;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* ================= SAFETY OVERRIDES ================= */
+.fashion-header .btn-outline {
+  color: #ff3f6c !important;
+  border-color: #ff3f6c !important;
+}
+
+/* ================= SEARCH WRAPPER ================= */
+
+.fashion-search-wrapper {
+  flex: 1; /* 🔥 This makes it expand */
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+/* Suggestions dropdown */
+.search-suggestions {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  z-index: 9999;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Suggestion item */
+.suggestion-item {
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background: #f5f5f6;
+  color: #ff3f6c;
+}
+
+/* ================= MEGA MENU IMAGE SUPPORT ================= */
+
+.mega-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.mega-image {
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mega-image img {
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.mega-image p {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* ================= WISHLIST ICON ================= */
+
+/* .wishlist-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.wishlist-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #ff3f6c;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.wishlist-hover {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background: #fff;
+  padding: 12px 16px;
+  width: 200px;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  display: none;
+  z-index: 100;
+}
+
+.wishlist-icon:hover .wishlist-hover {
+  display: block;
+} */
+
+/* Suggestion Dropdown */
+.suggestion-dropdown {
+  position: absolute;
+  top: 45px;
+  width: 100%;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  z-index: 200;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active {
+  background: #f5f5f6;
+}
+
+.highlight {
+  font-weight: 600;
+  color: #ff3f6c;
+}
+
+.fashion-logo {
+  cursor: pointer;
+}
+
+.wishlist-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.wishlist-hover {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: #fff;
+  padding: 16px;
+  width: 240px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 9999;
+}
+
+.wishlist-btn-link {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #ff3f6c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.wishlist-btn-link:hover {
+  background: #e0335c;
+}
+
+.wishlist-wrapper{
+  position: relative;
+}
+
+.wishlist-hover{
+  position: absolute;
+  top: 30px;
+  right: -20px;
+  width: 200px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+
+.wishlist-hover button{
+  margin-top:8px;
+  background:#ff3f6c;
+  color:white;
+  border:none;
+  padding:6px 10px;
+  border-radius:4px;
+  cursor:pointer;
+}
+
+.wishlist-hover button:hover{
+  background:#e0355f;
+}
