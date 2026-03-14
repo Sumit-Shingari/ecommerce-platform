@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import  api  from "../api/axiosConfig";
 import { auth } from "../auth/firebase";
 import {
   signInWithEmailAndPassword,
@@ -28,8 +29,8 @@ const AuthModal = ({ mode, closeModal }) => {
 
       const token = await userCredential.user.getIdToken();
 
-      await axios.post(
-        "http://localhost:8080/api/auth/sync",
+      await api.post(
+        "/api/auth/sync",
         {},
         {
           headers: {

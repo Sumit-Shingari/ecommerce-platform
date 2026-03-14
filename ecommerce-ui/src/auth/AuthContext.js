@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "./firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import axios from "axios";
+import  api  from "../api/axiosConfig";
+
 
 const AuthContext = createContext();
 
@@ -20,8 +21,8 @@ export const AuthProvider = ({ children }) => {
 
       const token = await user.getIdToken();
 
-      const res = await axios.get(
-        "http://localhost:8080/api/cart/count",
+      const res = await api.get(
+        "/api/cart/count",
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -53,8 +54,8 @@ export const AuthProvider = ({ children }) => {
 
       const token = await user.getIdToken();
 
-      const res = await axios.get(
-        "http://localhost:8080/api/wishlist",
+      const res = await api.get(
+        "/api/wishlist",
         {
           headers: {
             Authorization: `Bearer ${token}`

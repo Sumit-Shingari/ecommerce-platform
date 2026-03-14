@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useAuth } from "../auth/AuthContext";
+import api from "../api/axiosConfig";
 
 const WishlistPage = () => {
 
@@ -13,8 +13,8 @@ const WishlistPage = () => {
     const fetchWishlist = async () => {
       const token = await currentUser.getIdToken();
 
-      const res = await axios.get(
-        "http://localhost:8080/api/wishlist",
+      const res = await api.get(
+        "/api/wishlist",
         {
           headers: { Authorization: `Bearer ${token}` }
         }

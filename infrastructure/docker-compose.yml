@@ -1,0 +1,71 @@
+version: "3.8"
+
+services:
+
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ecommerce
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - ecommerce-network
+
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    container_name: elasticsearch
+    restart: always
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    networks:
+      - ecommerce-network
+
+
+  backend:
+    image: ghcr.io/sumit-shingari/ecommerce-platform/backend:latest
+    container_name: backend
+    depends_on:
+      - mysql
+      - elasticsearch
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/ecommerce
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_ELASTICSEARCH_URIS: http://elasticsearch:9200
+    networks:
+      - ecommerce-network
+
+
+  frontend:
+    image: ghcr.io/sumit-shingari/ecommerce-platform/frontend:latest
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - "80:3000"
+    networks:
+      - ecommerce-network
+
+
+networks:
+  ecommerce-network:
+
+
+volumes:
+  mysql_data:
+  es_data:

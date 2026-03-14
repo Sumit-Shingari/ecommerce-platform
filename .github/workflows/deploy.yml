@@ -85,3 +85,41 @@ jobs:
       - name: Push Frontend Docker Image
         run: |
           docker push ghcr.io/${{ steps.repo.outputs.repo }}/frontend:latest
+
+  deploy:
+
+    needs: [backend-build, frontend-build]
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+
+          script: |
+
+            echo "Login to GitHub Container Registry"
+
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io \
+            -u ${{ secrets.GHCR_USERNAME }} \
+            --password-stdin
+
+            echo "Navigate to project directory"
+
+            cd ~/ecommerce-deployment
+
+            echo "Pull latest images"
+
+            docker compose pull backend
+            docker compose pull frontend
+
+            echo "Restart containers"
+
+            docker compose up -d backend frontend
+
+            echo "Deployment completed"          

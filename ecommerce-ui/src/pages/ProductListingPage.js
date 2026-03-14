@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "../styles/plp.css";
 import { FaHeart } from "react-icons/fa";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 import AuthModal from "../components/AuthModal";
+import api from "../api/axiosConfig";
 
 import { useSearchParams, useLocation } from "react-router-dom";
 
@@ -46,8 +45,8 @@ const ProductListingPage = () => {
 
         const token = await currentUser.getIdToken();
 
-        await axios.post(
-            `http://localhost:8080/api/wishlist/${productId}`,
+        await api.post(
+            `/api/wishlist/${productId}`,
             {},
             {
                 headers: { Authorization: `Bearer ${token}` }
@@ -63,8 +62,8 @@ const ProductListingPage = () => {
         try {
             console.log("Sending query:", queryParam);
 
-            const res = await axios.post(
-                "http://localhost:8080/api/products/search",
+            const res = await api.post(
+                "/api/products/search",
                 {
                     query: queryParam, // ✅ FIXED
                     brands: filters.brands,
