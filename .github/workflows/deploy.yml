@@ -103,6 +103,11 @@ jobs:
           debug: true
 
           script: |
+            set -xe
+            
+            echo "Connected to EC2"
+
+            docker ps
 
             echo "Login to GitHub Container Registry"
 
