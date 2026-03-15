@@ -111,9 +111,7 @@ jobs:
 
             echo "Login to GitHub Container Registry"
 
-            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io \
-            -u ${{ secrets.GHCR_USERNAME }} \
-            --password-stdin
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
 
             echo "Navigate to project directory"
 
