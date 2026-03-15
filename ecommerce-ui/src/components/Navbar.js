@@ -77,7 +77,7 @@ const Navbar = () => {
               className="fashion-logo"
               onClick={() => navigate("/")}
             >
-              StyleSphere1
+              StyleSphere2
             </div>
 
             <nav className="fashion-menu">
