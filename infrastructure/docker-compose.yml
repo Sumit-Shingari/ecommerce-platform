@@ -9,11 +9,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ecommerce
-    ports:
-      - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    mem_limit: 512m
+    cpus: "0.30"
     networks:
       - ecommerce-network
 
@@ -25,11 +27,13 @@ services:
     environment:
       discovery.type: single-node
       xpack.security.enabled: "false"
-      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      ES_JAVA_OPTS: "-Xms256m -Xmx256m"
     ports:
       - "9200:9200"
     volumes:
       - es_data:/usr/share/elasticsearch/data
+    mem_limit: 1g
+    cpus: "0.40"
     networks:
       - ecommerce-network
 
@@ -46,7 +50,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/ecommerce
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
       SPRING_ELASTICSEARCH_URIS: http://elasticsearch:9200
+      JAVA_TOOL_OPTIONS: "-Xms128m -Xmx256m"
+    mem_limit: 1g
+    cpus: "0.40"
     networks:
       - ecommerce-network
 
@@ -57,7 +65,9 @@ services:
     depends_on:
       - backend
     ports:
-      - "80:3000"
+      - "80:80"
+    mem_limit: 200m
+    cpus: "0.20"
     networks:
       - ecommerce-network
 
