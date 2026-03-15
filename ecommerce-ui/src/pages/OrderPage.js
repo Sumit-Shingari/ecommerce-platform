@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useAuth } from "../auth/AuthContext";
 import "../styles/orders.css";
+import api from "../api/axiosConfig";
 
 const OrdersPage = () => {
 
@@ -13,8 +13,8 @@ const OrdersPage = () => {
 
         const token = await currentUser.getIdToken();
 
-        const res = await axios.get(
-            "http://localhost:8080/api/orders",
+        const res = await api.get(
+            "/api/orders",
             {
                 headers: {
                     Authorization: `Bearer ${token}`

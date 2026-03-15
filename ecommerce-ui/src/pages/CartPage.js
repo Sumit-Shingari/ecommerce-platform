@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "../styles/cart.css";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-hot-toast';
+import api from "../api/axiosConfig";
 
 const CartPage = () => {
 
@@ -21,8 +21,8 @@ const CartPage = () => {
 
       const token = await currentUser.getIdToken();
 
-      const res = await axios.post(
-        "http://localhost:8080/api/orders/checkout",
+      const res = await api.post(
+        "/api/orders/checkout",
         {},
         {
           headers: {
@@ -62,8 +62,8 @@ const CartPage = () => {
 
     const token = await currentUser.getIdToken();
 
-    const res = await axios.get(
-      "http://localhost:8080/api/cart",
+    const res = await api.get(
+      "/api/cart",
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -88,8 +88,8 @@ const CartPage = () => {
 
     const token = await currentUser.getIdToken();
 
-    await axios.put(
-      "http://localhost:8080/api/cart/update",
+    await api.put(
+      "/api/cart/update",
       {
         itemId: itemId,
         quantity: qty
@@ -109,8 +109,8 @@ const CartPage = () => {
 
     const token = await currentUser.getIdToken();
 
-    await axios.delete(
-      `http://localhost:8080/api/cart/${itemId}`,
+    await api.delete(
+      `/api/cart/${itemId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`

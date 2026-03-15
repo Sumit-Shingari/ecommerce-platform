@@ -109,10 +109,6 @@ jobs:
 
             docker ps
 
-            echo "Login to GitHub Container Registry"
-
-            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io --username ${{ secrets.GHCR_USERNAME }} --password-stdin
-
             echo "Navigate to project directory"
 
             cd ~/ecommerce-deployment
@@ -124,6 +120,6 @@ jobs:
 
             echo "Restart containers"
 
-            docker compose up -d --pull always backend frontend
+            docker compose up -d backend frontend
 
             echo "Deployment completed"          

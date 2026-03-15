@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "../styles/pdp.css";
 import { useAuth, } from "../auth/AuthContext";
 import { useParams } from "react-router-dom";
+import api from "../api/axiosConfig";
 
 const ProductDetailPage = () => {
 
@@ -53,8 +53,8 @@ const ProductDetailPage = () => {
 
             const token = await currentUser.getIdToken();
 
-            await axios.post(
-                "http://localhost:8080/api/cart/add",
+            await api.post(
+                "/api/cart/add",
                 {
                     skuId: selectedSku.skuId,
                     quantity: 1
@@ -96,8 +96,8 @@ const ProductDetailPage = () => {
 
         const fetchProduct = async () => {
 
-            const res = await axios.get(
-                `http://localhost:8080/api/products/${id}`
+            const res = await api.get(
+                `/api/products/${id}`
             );
 
             setProduct(res.data);
