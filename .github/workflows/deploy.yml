@@ -126,6 +126,6 @@ jobs:
 
             echo "Restart containers"
 
-            docker compose up -d backend frontend
+            docker compose up -d --pull always backend frontend
 
             echo "Deployment completed"          
