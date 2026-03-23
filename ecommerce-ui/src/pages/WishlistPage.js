@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import api from "../api/axiosConfig";
+import { useNavigate } from "react-router-dom";
 
 const WishlistPage = () => {
 
   const { currentUser } = useAuth();
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!currentUser) return;
@@ -36,7 +38,9 @@ const WishlistPage = () => {
       ) : (
         <div className="product-grid">
           {products.map(product => (
-            <div key={product.id} className="product-card">
+            <div key={product.id} className="product-card"
+            onClick={()=>navigate(`/product/${product.id}`)}
+            >
               <img src={product.imageUrl} alt={product.name} />
               <h4>{product.brand}</h4>
               <p>{product.name}</p>
